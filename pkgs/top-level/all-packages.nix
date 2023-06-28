@@ -17168,6 +17168,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  crg-derby-scoreboard = callPackage ../misc/crg-derby-scoreboard { };
+
   dart-sass-embedded = callPackage ../misc/dart-sass-embedded { };
 
   clojupyter = callPackage ../applications/editors/jupyter-kernels/clojupyter {
