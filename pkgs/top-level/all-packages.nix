@@ -11224,6 +11224,8 @@ with pkgs;
 
   otel-cli = callPackage ../tools/misc/otel-cli { };
 
+  otel-trace = callPackage ../tools/misc/otel-trace { };
+
   otfcc = callPackage ../tools/misc/otfcc { };
 
   otpclient = callPackage ../applications/misc/otpclient { };
