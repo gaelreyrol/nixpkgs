@@ -30444,6 +30444,8 @@ with pkgs;
 
   crun = callPackage ../applications/virtualization/crun { };
 
+  cronsun = callPackage ../tools/system/cronsun { };
+
   csdp = callPackage ../applications/science/math/csdp { };
 
   ctop = callPackage ../tools/system/ctop { };
