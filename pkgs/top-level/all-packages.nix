@@ -13408,6 +13408,8 @@ with pkgs;
     inherit (darwin.apple_sdk.frameworks) Security;
   };
 
+  tokenizer = callPackage ../servers/tokenizer { };
+
   tokio-console = callPackage ../development/tools/tokio-console { };
 
   toml2json = callPackage ../development/tools/toml2json { };
@@ -26820,6 +26822,8 @@ with pkgs;
   squid = callPackage ../servers/squid { };
 
   duckling-proxy = callPackage ../servers/duckling-proxy { };
+
+  ssokenizer = callPackage ../servers/ssokenizer { };
 
   sslh = callPackage ../servers/sslh { };
 
