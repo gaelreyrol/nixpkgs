@@ -553,6 +553,10 @@ with pkgs;
 
   dsq = callPackage ../tools/misc/dsq { };
 
+  dt = callPackage ../tools/misc/dt {
+    zig = buildPackages.zig_0_11;
+  };
+
   dtv-scan-tables = callPackage ../data/misc/dtv-scan-tables { };
 
   dufs = callPackage ../servers/http/dufs {
