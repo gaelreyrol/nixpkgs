@@ -41372,4 +41372,6 @@ with pkgs;
   waylyrics = callPackage ../applications/audio/waylyrics { };
 
   gitrs = callPackage ../tools/misc/gitrs { };
+
+  x-element-android = callPackage ../mobile/x-element-android { };
 }
