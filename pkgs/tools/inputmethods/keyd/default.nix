@@ -10,13 +10,13 @@
 }:
 
 let
-  version = "2.4.2";
+  version = "2.4.3";
 
   src = fetchFromGitHub {
     owner = "rvaiya";
     repo = "keyd";
     rev = "v" + version;
-    hash = "sha256-QWr+xog16MmybhQlEWbskYa/dypb9Ld54MOdobTbyMo=";
+    hash = "sha256-NhZnFIdK0yHgFR+rJm4cW+uEhuQkOpCSLwlXNQy6jas=";
   };
 
   pypkgs = python3.pkgs;
@@ -49,8 +49,11 @@ stdenv.mkDerivation rec {
 
   postPatch = ''
     substituteInPlace Makefile \
-      --replace DESTDIR= DESTDIR=${placeholder "out"} \
-      --replace /usr ""
+      --replace PREFIX=/usr PREFIX= \
+      --replace CONFIG_DIR=/etc/keyd CONFIG_DIR=${placeholder "out"}/etc \
+      --replace SOCKET_PATH=/var/run/keyd/keyd.socket SOCKET_PATH=${placeholder "out"}/run/keyd/keyd.socket
+
+    mkdir -p $out/lib/systemd
 
     substituteInPlace keyd.service \
       --replace /usr/bin $out/bin
@@ -60,8 +63,9 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
-  # post-2.4.2 may need this to unbreak the test
-  # makeFlags = [ "SOCKET_PATH/run/keyd/keyd.socket" ];
+  makeFlags = [
+    "DESTDIR=${placeholder "out"}"
+  ];
 
   postInstall = ''
     ln -sf ${lib.getExe appMap} $out/bin/${appMap.pname}
@@ -72,8 +76,11 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "A key remapping daemon for linux.";
+    homepage = "https://github.com/rvaiya/keyd";
+    changelog = "https://github.com/rvaiya/keyd/blob/v${version}/docs/CHANGELOG.md";
     license = licenses.mit;
     maintainers = with maintainers; [ peterhoeg ];
     platforms = platforms.linux;
+
   };
 }

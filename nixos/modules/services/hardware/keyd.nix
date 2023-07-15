@@ -51,6 +51,8 @@ in
   options.services.keyd = {
     enable = mkEnableOption (lib.mdDoc "keyd, a key remapping daemon");
 
+    package = mkPackageOption pkgs "keyd" { };
+
     keyboards = mkOption {
       type = types.attrsOf (types.submodule keyboardOptions);
       default = { };
@@ -112,19 +114,15 @@ in
         )
         cfg.keyboards;
 
-      # this is configurable in 2.4.2, later versions seem to remove this option.
-      # post-2.4.2 may need to set makeFlags in the derivation:
-      #
-      #     makeFlags = [ "SOCKET_PATH/run/keyd/keyd.socket" ];
-      environment.KEYD_SOCKET = "/run/keyd/keyd.sock";
+      environment.KEYD_SOCKET = "${cfg.package}/run/keyd/keyd.sock";
 
       serviceConfig = {
-        ExecStart = "${pkgs.keyd}/bin/keyd";
+        ExecStart = "${cfg.package}/bin/keyd";
         Restart = "always";
 
         # TODO investigate why it doesn't work propeprly with DynamicUser
         # See issue: https://github.com/NixOS/nixpkgs/issues/226346
-        # DynamicUser = true;
+        DynamicUser = true;
         SupplementaryGroups = [
           config.users.groups.input.name
           config.users.groups.uinput.name
