@@ -5079,6 +5079,8 @@ with pkgs;
 
   fits-cloudctl = callPackage ../tools/admin/fits-cloudctl { };
 
+  flipperzero-firmware = callPackage ../tools/misc/flipperzero-firmware { };
+
   flitter = callPackage ../tools/misc/flitter { };
 
   flowgger = callPackage ../tools/misc/flowgger {
