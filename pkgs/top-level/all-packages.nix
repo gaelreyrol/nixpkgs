@@ -15885,6 +15885,8 @@ with pkgs;
   spicedb     = callPackage ../servers/spicedb { };
   spicedb-zed = callPackage ../servers/spicedb/zed.nix { };
 
+  tabby = callPackage ../servers/tabby { };
+
   tacacsplus = callPackage ../servers/tacacsplus { };
 
   tamarin-prover =
