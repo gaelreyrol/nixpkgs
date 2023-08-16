@@ -10718,6 +10718,8 @@ with pkgs;
 
   mqtt_cpp = callPackage ../development/libraries/mqtt_cpp { };
 
+  ms-tpm-20-ref = callPackage ../development/libraries/ms-tpm-20-ref { };
+
   mr = callPackage ../applications/version-management/mr { };
 
   mrsh = callPackage ../shells/mrsh { };
@@ -13111,6 +13113,8 @@ with pkgs;
   ssh-to-age = callPackage ../tools/security/ssh-to-age { };
 
   ssh-to-pgp = callPackage ../tools/security/ssh-to-pgp { };
+
+  ssh-tpm-agent = callPackage ../tools/security/ssh-tpm-agent { };
 
   suricata = callPackage ../applications/networking/ids/suricata {
     python = python3;
@@ -21599,6 +21603,8 @@ with pkgs;
     util-linux = util-linuxMinimal; # break the cyclic dependency
     autoconf = buildPackages.autoconf269;
   };
+
+  go-tpm-tools = callPackage ../development/libraries/go-tpm-tools { };
 
   gpac = callPackage ../applications/video/gpac { };
 
