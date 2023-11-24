@@ -310,7 +310,7 @@ lib.makeScope pkgs.newScope (self: with self; {
 
     phalcon = callPackage ../development/php-packages/phalcon { };
 
-    php-spx = callPackage ../development/php-packages/php-spx { };
+    spx = callPackage ../development/php-packages/spx { };
 
     pinba = callPackage ../development/php-packages/pinba { };
 
