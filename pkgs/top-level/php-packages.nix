@@ -310,7 +310,7 @@ lib.makeScope pkgs.newScope (self: with self; {
 
     phalcon = callPackage ../development/php-packages/phalcon { };
 
-    spx = callPackage ../development/php-packages/spx { };
+    php-spx = lib.warn "php-spx is deprecated, use spx instead" (callPackage ../development/php-packages/spx { });
 
     pinba = callPackage ../development/php-packages/pinba { };
 
@@ -329,6 +329,8 @@ lib.makeScope pkgs.newScope (self: with self; {
     snuffleupagus = callPackage ../development/php-packages/snuffleupagus {
       inherit (pkgs) darwin;
     };
+
+    spx = callPackage ../development/php-packages/spx { };
 
     sqlsrv = callPackage ../development/php-packages/sqlsrv { };
 
