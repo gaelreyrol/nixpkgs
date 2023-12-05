@@ -310,7 +310,7 @@ lib.makeScope pkgs.newScope (self: with self; {
 
     phalcon = callPackage ../development/php-packages/phalcon { };
 
-    php-spx = lib.warn "php-spx is deprecated, use spx instead" (callPackage ../development/php-packages/spx { });
+    php-spx = lib.warn "php-spx is deprecated, use spx instead" self.extensions.spx;
 
     pinba = callPackage ../development/php-packages/pinba { };
 
