@@ -10,13 +10,13 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "cosmopolitan";
-  version = "2.2";
+  version = "3.1.3";
 
   src = fetchFromGitHub {
     owner = "jart";
     repo = "cosmopolitan";
     rev = finalAttrs.version;
-    hash = "sha256-DTL1dXH+LhaxWpiCrsNjV74Bw5+kPbhEAA2Z1NKiPDk=";
+    hash = "sha256-ac1/eE37OQnG45tlAwIECSrxLppoivgp+yHPu5SYZhE=";
   };
 
   patches = [
@@ -56,11 +56,11 @@ stdenv.mkDerivation (finalAttrs: {
   preCheck = let
     failingTests = [
       # some syscall tests fail because we're in a sandbox
-      "test/libc/calls/sched_setscheduler_test.c"
+      # "test/libc/calls/sched_setscheduler_test.c"
       "test/libc/thread/pthread_create_test.c"
       "test/libc/calls/getgroups_test.c"
       # fails
-      "test/libc/stdio/posix_spawn_test.c"
+      # "test/libc/stdio/posix_spawn_test.c"
     ];
   in lib.concatStringsSep ";\n" (map (t: "rm -v ${t}") failingTests);
 
@@ -82,6 +82,7 @@ stdenv.mkDerivation (finalAttrs: {
   };
 
   meta = {
+    changelog = "https://github.com/jart/cosmopolitan/releases/tag/${finalAttrs.version}";
     homepage = "https://justine.lol/cosmopolitan/";
     description = "Your build-once run-anywhere c library";
     license = lib.licenses.isc;
