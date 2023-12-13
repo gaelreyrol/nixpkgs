@@ -3,7 +3,7 @@
 stdenv.mkDerivation rec {
   pname = "mpdecimal";
   version = "2.5.1";
-  outputs = [ "out" "cxx" "doc" "dev" ];
+  outputs = [ "out" "cxx" "doc" ];
 
   src = fetchurl {
     url = "https://www.bytereef.org/software/mpdecimal/releases/mpdecimal-${version}.tar.gz";
@@ -15,9 +15,6 @@ stdenv.mkDerivation rec {
   postInstall = ''
     mkdir -p $cxx/lib
     mv $out/lib/*c++* $cxx/lib
-
-    mkdir -p $dev/nix-support
-    echo -n $cxx >> $dev/nix-support/propagated-build-inputs
   '';
 
   meta = {

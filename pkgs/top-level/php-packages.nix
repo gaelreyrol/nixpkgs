@@ -246,6 +246,8 @@ lib.makeScope pkgs.newScope (self: with self; {
       inherit (pkgs) darwin;
     };
 
+    decimal = callPackage ../development/php-packages/decimal { };
+
     ds = callPackage ../development/php-packages/ds { };
 
     event = callPackage ../development/php-packages/event { };
